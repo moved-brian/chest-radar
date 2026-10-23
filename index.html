@@ -267,6 +267,8 @@ footer a { color: var(--accent); text-decoration: none; }
 
 <div class="page">
 
+  <div id="fetch-warning" style="display:none;background:#fff4e8;border:1px solid #f9d9b5;color:#8a4b00;border-radius:6px;padding:8px 12px;margin-bottom:12px;font-size:12px;"></div>
+
   <div class="filter-bar" id="filter-bar">
     <div class="filter-row">
       <input class="search" id="search" type="search" placeholder="🔍 搜尋標題、主辦、地點…" oninput="render()">
@@ -348,6 +350,13 @@ async function boot() {
     const d = new Date(data.generated_at);
     document.getElementById('updated-at').textContent =
       d.toLocaleString('zh-TW', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+  }
+  const errs = data.fetch_errors || {};
+  const badSources = Object.keys(errs);
+  if (badSources.length) {
+    const el = document.getElementById('fetch-warning');
+    el.style.display = 'block';
+    el.textContent = `⚠ 本次更新有頁面抓取失敗（${badSources.join('、')}），這些來源的課程可能不完整；下一次更新會再試。`;
   }
   calYear = today.getFullYear(); calMonth = today.getMonth();
   buildChips();

@@ -25,6 +25,7 @@ run.py adds "first_seen" (YYYY-MM-DD, Taiwan time) from data/seen.json.
 """
 
 import re
+import time
 import logging
 from datetime import datetime, timezone, timedelta
 from typing import Optional
@@ -49,6 +50,10 @@ HEADERS = {
 
 TW_TZ = timezone(timedelta(hours=8))
 
+# URLs that could not be fetched in this run — run.py writes them into events.json so the
+# site can say "this update had fetch failures" instead of silently showing fewer courses.
+FETCH_ERRORS: list[dict] = []
+
 
 def fetch_html(url: str, timeout: int = 20, **kwargs) -> Optional[str]:
     """GET a URL and return decoded HTML text. Returns None on failure.
@@ -60,13 +65,22 @@ def fetch_html(url: str, timeout: int = 20, **kwargs) -> Optional[str]:
     """
     log = logging.getLogger(__name__)
     try:
-        try:
-            resp = requests.get(url, headers=HEADERS, timeout=timeout, **kwargs)
-        except requests.exceptions.SSLError as e:
-            log.warning("GET %s: TLS error (%s) — retrying without verification", url, e)
-            import urllib3
-            urllib3.disable_warnings()
-            resp = requests.get(url, headers=HEADERS, timeout=timeout, verify=False, **kwargs)
+        resp = None
+        for attempt in range(3):                      # old ASP sites drop connections now and then
+            try:
+                resp = requests.get(url, headers=HEADERS, timeout=timeout, **kwargs)
+                break
+            except requests.exceptions.SSLError as e:
+                log.warning("GET %s: TLS error (%s) — retrying without verification", url, e)
+                import urllib3
+                urllib3.disable_warnings()
+                resp = requests.get(url, headers=HEADERS, timeout=timeout, verify=False, **kwargs)
+                break
+            except (requests.exceptions.ConnectionError, requests.exceptions.Timeout) as e:
+                if attempt == 2:
+                    raise
+                log.warning("GET %s: %s — retry %d/2", url, e.__class__.__name__, attempt + 1)
+                time.sleep(3 * (attempt + 1))
         resp.raise_for_status()
         if not resp.encoding or resp.encoding.lower() == "iso-8859-1":
             resp.encoding = resp.apparent_encoding or "utf-8"
@@ -77,6 +91,7 @@ def fetch_html(url: str, timeout: int = 20, **kwargs) -> Optional[str]:
         return text
     except Exception as e:  # noqa: BLE001
         log.error("GET %s failed: %s", url, e)
+        FETCH_ERRORS.append({"url": url, "error": f"{e.__class__.__name__}: {str(e)[:160]}"})
         return None
 
 

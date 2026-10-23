@@ -20,7 +20,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 from scrapers import ALL_SCRAPERS                      # noqa: E402
-from scrapers.base import today_tw                     # noqa: E402
+from scrapers.base import today_tw, FETCH_ERRORS       # noqa: E402
 
 log = logging.getLogger("run")
 DATA_DIR    = Path(__file__).parent / "data"
@@ -92,17 +92,22 @@ def apply_first_seen(events: list[dict], seen: dict) -> dict:
 def run(sources=None, dry_run=False, past_days=7) -> list[dict]:
     targets = sources or list(ALL_SCRAPERS.keys())
     all_events, stats = [], {}
+    errors_by_source = {}
     for name in targets:
         if name not in ALL_SCRAPERS:
             log.warning("Unknown source: %s (valid: %s)", name, list(ALL_SCRAPERS))
             continue
         log.info("━━━ %s ━━━", name)
+        before = len(FETCH_ERRORS)
         try:
             evs = ALL_SCRAPERS[name]()
         except Exception as exc:                      # noqa: BLE001
             log.error("✗ %s failed: %s", name, exc, exc_info=True)
+            FETCH_ERRORS.append({"url": name, "error": f"{exc.__class__.__name__}: {str(exc)[:160]}"})
             evs = []
         stats[name] = len(evs)
+        if len(FETCH_ERRORS) > before:
+            errors_by_source[name] = FETCH_ERRORS[before:]
         all_events.extend(evs)
 
     unique = dedup(all_events)
@@ -120,6 +125,8 @@ def run(sources=None, dry_run=False, past_days=7) -> list[dict]:
     hosp = sum(1 for e in window if e["level"] == "hospital")
     print(f"  {'TOTAL':<10} {len(unique):>4} unique | {len(window):>4} in window "
           f"({len(window) - hosp} 學會級 / {hosp} 各院討論會)")
+    for name, errs in errors_by_source.items():
+        print(f"  ⚠ {name}: {len(errs)} fetch error(s) — " + "; ".join(x["url"] for x in errs))
     print("=" * 58 + "\n")
 
     if not dry_run:
@@ -128,6 +135,7 @@ def run(sources=None, dry_run=False, past_days=7) -> list[dict]:
             "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
             "total": len(window),
             "sources": stats,
+            "fetch_errors": {name: [x["url"] for x in errs] for name, errs in errors_by_source.items()},
             "events": window,
         }
         OUTPUT_FILE.write_text(json.dumps(output, ensure_ascii=False, indent=1), encoding="utf-8")
