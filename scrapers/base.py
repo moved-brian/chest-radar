@@ -176,7 +176,8 @@ _REGION_RULES: list[tuple[re.Pattern, str]] = [
                 r"中榮|中國附醫|中國醫藥|中山附醫|中山醫學大學|澄清|光田|童綜合|仁愛醫院|彰基|彰化基督教|秀傳|佑民|部立台中|衛福部台中|衛福部臺中|"
                 r"裕元|李方艾美|林酒店|The\s*Lin|日月千禧|長榮桂冠\(?台中|中區"), "中區"),
     # 北區
-    (re.compile(r"台北|臺北|北市|新北|基隆|桃園|新竹|竹北|竹東|苗栗|頭份|板橋|林口|淡水|三峽|土城|樹林|新莊|中和|永和|新店|汐止|三重|蘆洲|"
+    (re.compile(r"胸重學會會址|中華路一段74號|"
+                r"台北|臺北|北市|新北|基隆|桃園|新竹|竹北|竹東|苗栗|頭份|板橋|林口|淡水|三峽|土城|樹林|新莊|中和|永和|新店|汐止|三重|蘆洲|"
                 r"內湖|士林|北投|信義區|松山|大安|中山區|中正區|文山|南港|大同區|萬華|萬芳|中壢|平鎮|龍潭|八德|楊梅|大園|"
                 r"榮總|台大醫院|臺大醫院|台大醫學院|臺大醫學院|台大國際會議|三總|三軍總|國泰|新光|馬偕|振興|亞東|雙和|輔大|輔仁|恩主公|耕莘|"
                 r"長庚紀念醫院|林口長庚|台北長庚|基隆長庚|和平婦幼|聯合醫院|陽明醫院|忠孝醫院|仁愛院區|中興院區|北醫|臺北醫學大學|台北醫學大學|"
@@ -194,45 +195,81 @@ def classify_region(location: str, organizer: str = "", title: str = "") -> tupl
     loc = location or ""
     if ONLINE_RE.search(loc) or (not loc.strip() and ONLINE_RE.search(title or "")):
         return "線上", True
-    for text in (loc, organizer or "", title or ""):
+    for text in (loc, organizer or ""):
         if not text:
             continue
         for rx, region in _REGION_RULES:
             if rx.search(text):
                 return region, False
+    # Title is the weakest signal: country words there are usually topics ("Japan guideline"),
+    # so only city names / explicit venues count, and 國外 only for well-known host cities.
+    t = title or ""
+    if _TITLE_ABROAD_RE.search(t):
+        return "國外", False
+    for rx, region in _REGION_RULES[2:]:          # skip the 國外 / 外島 rules for titles
+        if rx.search(t):
+            return region, False
     return "未標示", False
+
+
+_TITLE_ABROAD_RE = re.compile(
+    r"Manila|Tokyo|Osaka|Kyoto|Seoul|Busan|Singapore|Bangkok|Hong\s*Kong|Hanoi|Kuala\s*Lumpur|Jakarta|"
+    r"Sydney|Melbourne|Vienna|Barcelona|Amsterdam|Berlin|Paris|London|Madrid|Milan|Rome|Copenhagen|Dubai|"
+    r"Shanghai|Beijing|Macau|馬尼拉|東京|首爾|新加坡|曼谷|香港|澳門|上海|北京|維也納|巴塞隆納|阿姆斯特丹", re.I,
+)
 
 
 # ── Level classification (學會級 vs 各院討論會) ──────────────────────────────
 
 SOCIETY_RE = re.compile(
-    r"學會|協會|基金會|委員會|公會|聯盟|Society|Association|Foundation|College|"
-    r"衛生局|衛生福利部|疾病管制署|疾管署|健保署|食品藥物|生策|研究中心|教育部|國家|Academy|Congress|研究學會",
+    r"學會|協會|基金會|委員會|公會|聯盟|Society|Association|Foundation|College|Academy|Alliance|"
+    r"Consortium|Research\s*Group|Institute|Network|"
+    r"衛生局|衛生福利部|疾病管制署|疾管署|健保署|食品藥物|生策|研究中心|教育部|國家|Congress|研究學會",
     re.I,
 )
+# Organizer is a single hospital / department (the 衛生福利部XX醫院 prefix still means a hospital)
+HOSPITAL_ORG_RE = re.compile(r"醫院|分院|醫學中心|總醫院|院區|診所|醫療財團法人|醫療社團法人|睡眠中心|加護中心|部$|科$")
+# Titles of a hospital's own routine sessions
 HOSPITAL_SESSION_RE = re.compile(
-    r"病例討論|個案討論|期刊討論|期刊雜誌|文獻討論|journal|case\s*(conference|discussion)|grand\s*round|晨會|"
-    r"多專科團隊|多團隊|MDT|跨團隊|影像診療研討|X光討論|教學討論|總查房|臨床病理討論|死亡及併發症|M&M|MMC|"
-    r"專題演講暨個案|特別演講暨個案|科內|部內|住院醫師|教學課程|讀書會",
+    r"病例討論|個案討論|案例討論|病例併期刊|期刊討論|期刊雜誌|文獻討論|journal|case\s*(conference|discussion)|"
+    r"grand\s*round|晨會|多專科|多團隊|MDT|跨團隊|團隊會議|影像診療研討|教學討論|總查房|臨床病理討論|"
+    r"死亡及併發症|M&M|MMC|SPC|專題演講暨個案|特別演講暨個案|科內|部內|住院醫師|教學課程|讀書會|簡介\(",
+    re.I,
+)
+# Titles that signal a regional / multi-hospital / open event even when a hospital hosts it
+OPEN_EVENT_RE = re.compile(
+    r"北區|中區|南區|東區|北部|中部|南部|東部|雲嘉|桃園區|地區|區域|聯合|跨院|跨領域|國際|International|"
+    r"全國|Taiwan|年會|半年會|季會|論壇|Forum|Symposium|Conference|研習會|研習營|工作坊|Workshop|認證|訓練課程",
     re.I,
 )
 
 
 def classify_level(organizer: str, title: str = "", credit_points: Optional[float] = None) -> str:
     """
-    'society'  — 學會、協會、政府機關主辦，或跨院/公開活動
+    'society'  — 學會、協會、政府機關主辦，或跨院/區域/公開活動
     'hospital' — 單一醫院/科部自己的例行討論會（預設隱藏）
     """
     org = organizer or ""
+    t = title or ""
+    pts = credit_points if credit_points is not None else 0
+
+    if HOSPITAL_ORG_RE.search(org) and not re.search(r"學會|協會|公會|聯盟|Society|Association", org, re.I):
+        # a hospital hosts it: open only if the title says so, or it is a half-day+ event
+        if OPEN_EVENT_RE.search(t):
+            return "society"
+        if HOSPITAL_SESSION_RE.search(t):
+            return "hospital"
+        return "society" if pts >= 3 else "hospital"
+
     if SOCIETY_RE.search(org):
         return "society"
-    # Organizer is a hospital / department (or blank): hospital-level unless the
-    # title looks like an open event with real credits.
-    if HOSPITAL_SESSION_RE.search(title or ""):
+
+    # organizer unknown or a bare department name ("胸腔內科", "睡眠中心", "")
+    if OPEN_EVENT_RE.search(t) and not HOSPITAL_SESSION_RE.search(t):
+        return "society"
+    if HOSPITAL_SESSION_RE.search(t):
         return "hospital"
-    if credit_points is not None and credit_points >= 3:
-        return "society"   # a half-day+ event run by a hospital is usually open to all
-    return "hospital"
+    return "society" if pts >= 3 else "hospital"
 
 
 # ── Category helper ─────────────────────────────────────────────────────────

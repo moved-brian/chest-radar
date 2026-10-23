@@ -55,6 +55,11 @@ def _parse_other_page(soup, url: str) -> list[dict]:
         organizer = org_m.group(1).strip() if org_m else ""
         location  = place_m.group(1).strip() if place_m else ""
         credit    = credit_m.group(1).strip() if credit_m else ""
+        # an empty 學分 field makes the regex swallow the next label (e.g. "聯絡人：")
+        if re.match(r"^(聯絡人|地點|主辦單位|課程|日期)[:：]?", credit):
+            credit = ""
+        if re.match(r"^(聯絡人|學分|主辦單位|課程|日期)[:：]?", location):
+            location = ""
 
         dates = parse_all_dates(date_raw)
         date = dates[0] if dates else None
