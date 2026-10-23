@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>胸腔科進修雷達</title>
+<meta name="description" content="自動彙整台灣胸腔暨重症相關學會的課程、研討會與工作坊——日期、地點、積分、主辦單位一次看，每 12 小時更新。">
+<meta property="og:title" content="胸腔科進修雷達">
+<meta property="og:description" content="自動彙整台灣胸腔暨重症相關學會的課程、研討會與工作坊，每 12 小時更新。">
+<meta property="og:type" content="website">
+<style>
+/* ── Tokens ───────────────────────────────────────────────────
+   deep blue (#0d2b45) × paper (#f6f7f9) × amber accent (#f08a24)
+   The pulse dot in the header = the radar is live.
+───────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy:       #0d2b45;
+  --navy-mid:   #163d5f;
+  --navy-light: #1f4f78;
+  --accent:     #f08a24;
+  --accent-dim: #d2730f;
+  --paper:      #f6f7f9;
+  --gray-100:   #eef0f4;
+  --gray-200:   #dde1ea;
+  --gray-400:   #9aa3b5;
+  --gray-600:   #5a6480;
+  --text:       #1a2340;
+  --green:      #138a63;
+  --radius:     6px;
+  --shadow:     0 2px 12px rgba(13,43,69,0.10);
+}
+html { -webkit-text-size-adjust: 100%; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC",
+               "Microsoft JhengHei", sans-serif;
+  background: var(--paper); color: var(--text);
+  font-size: 14px; line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── Header ─────────────────────────────────────────────────── */
+header {
+  background: var(--navy); color: #fff; padding: 0 16px;
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+}
+.header-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  min-height: 54px; gap: 12px;
+}
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; min-width: 0; }
+.logo-pulse {
+  width: 10px; height: 10px; border-radius: 50%; background: var(--accent); flex-shrink: 0;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0   rgba(240,138,36,0.55); }
+  70%  { box-shadow: 0 0 0 8px rgba(240,138,36,0);    }
+  100% { box-shadow: 0 0 0 0   rgba(240,138,36,0);    }
+}
+.logo-text { font-size: 16px; font-weight: 700; white-space: nowrap; }
+.logo-sub  { font-size: 11px; color: var(--gray-400); font-weight: 400; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.header-meta { font-size: 11px; color: var(--gray-400); white-space: nowrap; text-align: right; }
+.header-meta span { color: var(--accent); font-weight: 600; }
+
+/* ── Tabs ────────────────────────────────────────────────────── */
+.tabs { background: var(--navy-mid); border-bottom: 1px solid var(--navy-light); }
+.tabs-inner { max-width: 1100px; margin: 0 auto; display: flex; padding: 0 16px; }
+.tab-btn {
+  background: none; border: none; cursor: pointer; padding: 10px 16px;
+  font-size: 13px; font-weight: 500; color: var(--gray-400);
+  border-bottom: 2px solid transparent; white-space: nowrap;
+  transition: color .15s, border-color .15s;
+}
+.tab-btn:hover  { color: #fff; }
+.tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* ── Layout ──────────────────────────────────────────────────── */
+.page { max-width: 1100px; margin: 0 auto; padding: 16px; }
+
+/* ── Filter bar ──────────────────────────────────────────────── */
+.filter-bar {
+  background: #fff; border: 1px solid var(--gray-200); border-radius: var(--radius);
+  padding: 10px 14px; margin-bottom: 14px; box-shadow: var(--shadow);
+  display: flex; flex-direction: column; gap: 8px;
+}
+.filter-row { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+.filter-label {
+  font-size: 11px; font-weight: 700; color: var(--gray-600); letter-spacing: .05em;
+  white-space: nowrap; min-width: 34px;
+}
+.filter-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  padding: 3px 10px; border-radius: 20px; border: 1px solid var(--gray-200);
+  background: var(--gray-100); font-size: 12px; cursor: pointer; color: var(--gray-600);
+  transition: all .12s; white-space: nowrap; user-select: none;
+}
+.chip:hover  { border-color: var(--accent); color: var(--accent-dim); }
+.chip.active { background: var(--navy); border-color: var(--navy); color: #fff; font-weight: 600; }
+.chip.active.chip-accent { background: var(--accent); border-color: var(--accent); }
+.chip .n { opacity: .65; font-weight: 400; margin-left: 3px; font-size: 11px; }
+
+.toggle {
+  display: inline-flex; align-items: center; gap: 6px; cursor: pointer; user-select: none;
+  font-size: 12px; color: var(--gray-600); white-space: nowrap;
+}
+.toggle input[type=checkbox] { accent-color: var(--accent); width: 14px; height: 14px; }
+.search {
+  flex: 1 1 160px; min-width: 140px;
+  border: 1px solid var(--gray-200); border-radius: 20px; padding: 4px 12px;
+  font-size: 13px; background: var(--gray-100); color: var(--text); outline: none;
+}
+.search:focus { border-color: var(--accent); background: #fff; }
+.filter-count { font-size: 12px; color: var(--gray-400); white-space: nowrap; margin-left: auto; }
+.filter-count b { color: var(--accent-dim); }
+.filter-count a { color: var(--gray-600); cursor: pointer; text-decoration: underline dotted; }
+.clear-btn { font-size: 12px; color: var(--gray-600); background: none; border: none; cursor: pointer; text-decoration: underline; padding: 0 4px; }
+.filter-toggle {
+  display: none; font-size: 12px; color: var(--navy); background: var(--gray-100);
+  border: 1px solid var(--gray-200); border-radius: 20px; padding: 3px 10px; cursor: pointer; white-space: nowrap;
+}
+.filter-toggle b { color: var(--accent-dim); }
+
+/* ── List ────────────────────────────────────────────────────── */
+#view-list { display: block; }
+#view-calendar { display: none; }
+.event-list { display: flex; flex-direction: column; }
+.month-header {
+  font-size: 11px; font-weight: 700; color: var(--gray-400);
+  letter-spacing: .08em; padding: 18px 0 6px;
+}
+.month-header:first-child { padding-top: 0; }
+.event-card {
+  background: #fff; border: 1px solid var(--gray-200); border-radius: var(--radius);
+  padding: 10px 14px; display: grid; grid-template-columns: 58px minmax(0,1fr) 16px;
+  gap: 0 12px; align-items: start; margin-bottom: 5px;
+  text-decoration: none; color: inherit; box-shadow: var(--shadow);
+  transition: border-color .12s, box-shadow .12s, transform .08s;
+}
+.event-card:hover { border-color: var(--accent); box-shadow: 0 4px 20px rgba(240,138,36,0.14); transform: translateY(-1px); }
+.event-card.past { opacity: .5; }
+.event-card.today { border-left: 3px solid var(--accent); }
+.event-card.hospital { background: #fbfbfd; }
+.event-date { text-align: center; padding: 2px 0; border-right: 2px solid var(--gray-200); }
+.event-date .day { font-size: 21px; font-weight: 700; line-height: 1.1; color: var(--navy); }
+.event-date .day.range { font-size: 15px; letter-spacing: -.02em; }
+.event-date .mon { font-size: 10px; color: var(--gray-400); letter-spacing: .05em; }
+.event-date .wd  { font-size: 10px; color: var(--gray-600); }
+.event-card.today .event-date { border-right-color: var(--accent); }
+.event-card.today .event-date .day { color: var(--accent-dim); }
+.event-body { min-width: 0; }
+.event-title {
+  font-size: 14px; font-weight: 600; color: var(--navy); line-height: 1.4; margin-bottom: 4px;
+  overflow-wrap: anywhere;
+}
+.event-meta { display: flex; flex-wrap: wrap; gap: 4px 6px; align-items: center; font-size: 12px; color: var(--gray-600); }
+.event-meta .m { overflow-wrap: anywhere; }
+.badge { font-size: 11px; padding: 1px 7px; border-radius: 10px; font-weight: 500; white-space: nowrap; }
+.badge-source { background: var(--navy); color: #fff; }
+.badge-cat    { background: var(--gray-100); color: var(--gray-600); border: 1px solid var(--gray-200); }
+.badge-new    { background: var(--accent); color: #fff; font-weight: 700; }
+.badge-online { background: #e6f4f0; color: var(--green); border: 1px solid #bfe3d6; }
+.badge-region { background: #fff4e8; color: var(--accent-dim); border: 1px solid #f9d9b5; }
+.event-arrow { color: var(--gray-400); font-size: 16px; align-self: center; transition: color .12s, transform .12s; }
+.event-card:hover .event-arrow { color: var(--accent); transform: translateX(2px); }
+.hidden-note {
+  text-align: center; font-size: 12px; color: var(--gray-400); padding: 14px 0 4px;
+}
+.hidden-note a { color: var(--gray-600); cursor: pointer; text-decoration: underline dotted; }
+
+/* ── Calendar ─────────────────────────────────────────────────── */
+.cal-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.cal-header h2 { font-size: 17px; font-weight: 700; color: var(--navy); }
+.cal-nav {
+  background: none; border: 1px solid var(--gray-200); border-radius: var(--radius);
+  padding: 3px 10px; cursor: pointer; font-size: 14px; color: var(--gray-600);
+}
+.cal-nav:hover { background: var(--gray-100); color: var(--navy); }
+.cal-today { font-size: 12px; margin-left: auto; }
+.cal-grid { background: #fff; border: 1px solid var(--gray-200); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+.cal-weekdays { display: grid; grid-template-columns: repeat(7, 1fr); background: var(--navy); }
+.cal-wd { text-align: center; padding: 7px 2px; font-size: 11px; font-weight: 700; color: var(--gray-400); }
+.cal-wd:first-child { color: #f87171; }
+.cal-wd:last-child  { color: #60a5fa; }
+.cal-days { display: grid; grid-template-columns: repeat(7, 1fr); border-top: 1px solid var(--gray-200); }
+.cal-day { min-height: 76px; border-right: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); padding: 5px; min-width: 0; }
+.cal-day:nth-child(7n) { border-right: none; }
+.cal-day.other-month .cal-day-num { color: var(--gray-200); }
+.cal-day-num {
+  font-size: 12px; font-weight: 600; color: var(--gray-600); margin-bottom: 3px;
+  width: 22px; height: 22px; display: flex; align-items: center; justify-content: center;
+}
+.cal-day.today .cal-day-num { background: var(--accent); color: #fff; border-radius: 50%; font-weight: 700; }
+.cal-events { display: flex; flex-direction: column; gap: 2px; }
+.cal-event {
+  font-size: 10px; font-weight: 500; background: var(--navy); color: #fff; border-radius: 3px;
+  padding: 2px 4px; cursor: pointer; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+  text-decoration: none; display: block; line-height: 1.4;
+}
+.cal-event:hover { background: var(--accent); }
+.cal-event.src-TSPCCM   { background: #163d5f; }
+.cal-event.src-肺癌學會  { background: #7c3aed; }
+.cal-event.src-結核學會  { background: #0369a1; }
+.cal-event.src-急救加護  { background: #9f1239; }
+.cal-event.src-重症醫學會 { background: #b45309; }
+.cal-event.src-睡眠學會  { background: #065f46; }
+.cal-event.hospital { opacity: .55; }
+.cal-more { font-size: 10px; color: var(--gray-400); padding: 1px 4px; }
+.cal-daylist { margin-top: 12px; }
+.cal-daylist h3 { font-size: 13px; color: var(--gray-600); margin-bottom: 6px; }
+
+/* ── Empty / footer ─────────────────────────────────────────── */
+.empty { text-align: center; padding: 50px 20px; color: var(--gray-400); }
+.empty-icon { font-size: 36px; margin-bottom: 10px; }
+footer {
+  background: var(--navy); color: var(--gray-400); font-size: 12px; text-align: center;
+  padding: 18px 16px; margin-top: 40px; line-height: 1.8;
+}
+footer a { color: var(--accent); text-decoration: none; }
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .header-inner { min-height: 50px; }
+  .logo-sub { display: none; }
+  .header-meta { font-size: 10px; }
+  .page { padding: 12px 10px; }
+  .event-card { grid-template-columns: 48px minmax(0,1fr) 12px; gap: 0 10px; padding: 9px 10px; }
+  .event-date .day { font-size: 18px; }
+  .event-date .day.range { font-size: 13px; }
+  .event-title { font-size: 13.5px; }
+  .filter-bar { padding: 8px 10px; }
+  .cal-day { min-height: 46px; padding: 3px; }
+  .cal-event, .cal-more { display: none; }
+  .cal-day.has-events { cursor: pointer; }
+  .cal-day.has-events::after { content: ''; display: block; margin: 2px auto 0; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  .cal-day.has-events.sel { background: #fff4e8; }
+  .filter-count { margin-left: 0; width: 100%; }
+  .filter-toggle { display: inline-block; }
+  .filter-bar:not(.open) .filter-row.chips { display: none; }
+  .filter-bar .filter-row.count-row { display: flex; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a class="logo" href="#">
+      <div class="logo-pulse"></div>
+      <div style="min-width:0">
+        <div class="logo-text">胸腔科進修雷達</div>
+        <div class="logo-sub">自動彙整台灣胸腔暨重症相關學會課程・每 12 小時更新</div>
+      </div>
+    </a>
+    <div class="header-meta">更新：<span id="updated-at">—</span></div>
+  </div>
+</header>
+
+<div class="tabs">
+  <div class="tabs-inner">
+    <button class="tab-btn active" id="tab-list" onclick="switchTab('list')">📋 課程列表</button>
+    <button class="tab-btn" id="tab-calendar" onclick="switchTab('calendar')">📅 行事曆</button>
+  </div>
+</div>
+
+<div class="page">
+
+  <div class="filter-bar" id="filter-bar">
+    <div class="filter-row">
+      <input class="search" id="search" type="search" placeholder="🔍 搜尋標題、主辦、地點…" oninput="render()">
+      <button class="filter-toggle" id="filter-toggle" onclick="toggleFilters()">☰ 篩選</button>
+      <label class="toggle"><input type="checkbox" id="show-hospital" onchange="buildChips(); render()"> 含各院討論會</label>
+      <label class="toggle"><input type="checkbox" id="hide-past" checked onchange="render()"> 排除過期</label>
+      <button class="clear-btn" onclick="clearFilters()">清除篩選</button>
+    </div>
+    <div class="filter-row chips"><span class="filter-label">來源</span><div class="filter-chips" id="source-chips"></div></div>
+    <div class="filter-row chips"><span class="filter-label">地區</span><div class="filter-chips" id="region-chips"></div></div>
+    <div class="filter-row chips"><span class="filter-label">分類</span><div class="filter-chips" id="cat-chips"></div></div>
+    <div class="filter-row chips"><span class="filter-label">新收錄</span><div class="filter-chips" id="new-chips"></div></div>
+    <div class="filter-row count-row"><div class="filter-count" id="count-label"></div></div>
+  </div>
+
+  <div id="view-list"><div class="event-list" id="event-list"></div></div>
+
+  <div id="view-calendar">
+    <div class="cal-header">
+      <button class="cal-nav" onclick="calMove(-1)">‹</button>
+      <h2 id="cal-title"></h2>
+      <button class="cal-nav" onclick="calMove(1)">›</button>
+      <button class="cal-nav cal-today" onclick="calToday()">今天</button>
+    </div>
+    <div class="cal-grid">
+      <div class="cal-weekdays">
+        <div class="cal-wd">日</div><div class="cal-wd">一</div><div class="cal-wd">二</div>
+        <div class="cal-wd">三</div><div class="cal-wd">四</div><div class="cal-wd">五</div><div class="cal-wd">六</div>
+      </div>
+      <div class="cal-days" id="cal-days"></div>
+    </div>
+    <div class="cal-daylist" id="cal-daylist"></div>
+  </div>
+
+</div>
+
+<footer>
+  資料自動彙整自各學會官網的公開頁面，每一筆都連回原公告；本站為個人彙整，非官方管道，報名與最終資訊請以主辦單位公告為準。<br>
+  來源：台灣胸腔暨重症加護醫學會・台灣肺癌學會・台灣結核暨肺部疾病醫學會・台灣急救加護醫學會・中華民國重症醫學會・台灣睡眠醫學學會<br>
+  「各院討論會」＝單一醫院／科部的例行病例、期刊討論會，預設隱藏，勾選「含各院討論會」即可顯示。
+</footer>
+
+<script>
+// ── State ─────────────────────────────────────────────────────
+let ALL_EVENTS = [];
+const F = { sources: new Set(), regions: new Set(), cats: new Set(), fresh: '' };
+let calYear, calMonth, calSelected = null;
+const today = new Date(); today.setHours(0,0,0,0);
+const TODAY_STR = localDateStr(today);
+let LAST_VISIT = null;
+
+const SOURCE_ORDER = ['TSPCCM','肺癌學會','結核學會','急救加護','重症醫學會','睡眠學會'];
+const REGION_ORDER = ['北區','中區','南區','東區','外島','線上','國外','未標示'];
+const FRESH_OPTS = [['', '不限'], ['visit', '自上次造訪'], ['3', '近 3 天'], ['7', '近 7 天']];
+const WD = ['日','一','二','三','四','五','六'];
+const MON_ZH = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+const MON_EN = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+// ── Boot ──────────────────────────────────────────────────────
+async function boot() {
+  try {
+    LAST_VISIT = localStorage.getItem('chest-radar:lastVisit');
+    localStorage.setItem('chest-radar:lastVisit', new Date().toISOString());
+    const saved = JSON.parse(localStorage.getItem('chest-radar:filters') || 'null');
+    if (saved) {
+      (saved.sources||[]).forEach(s => F.sources.add(s));
+      (saved.regions||[]).forEach(s => F.regions.add(s));
+      document.getElementById('show-hospital').checked = !!saved.hospital;
+      if (saved.hidePast === false) document.getElementById('hide-past').checked = false;
+    }
+  } catch (e) { /* storage unavailable: run with defaults */ }
+
+  const r = await fetch('data/events.json', { cache: 'no-store' }).catch(() => null);
+  if (!r || !r.ok) { showError(); return; }
+  const data = await r.json();
+  ALL_EVENTS = (data.events || []).map(e => ({ ...e, _d: e.date, _end: e.end_date || e.date }));
+
+  if (data.generated_at) {
+    const d = new Date(data.generated_at);
+    document.getElementById('updated-at').textContent =
+      d.toLocaleString('zh-TW', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+  }
+  calYear = today.getFullYear(); calMonth = today.getMonth();
+  buildChips();
+  render();
+}
+
+function showError() {
+  document.getElementById('event-list').innerHTML =
+    `<div class="empty"><div class="empty-icon">⚠️</div><p>無法載入 data/events.json<br>請先執行 <code>python run.py</code></p></div>`;
+}
+
+// ── Chips ─────────────────────────────────────────────────────
+function baseEvents() {
+  // everything except the level / past rules, used to count chips sensibly
+  const showHosp = document.getElementById('show-hospital').checked;
+  return ALL_EVENTS.filter(e => showHosp || e.level !== 'hospital');
+}
+function buildChips() {
+  const base = baseEvents();
+  const count = (key) => base.reduce((m, e) => { m[e[key]] = (m[e[key]] || 0) + 1; return m; }, {});
+  const srcCount = count('source'), regCount = count('region'), catCount = count('category');
+
+  const sources = SOURCE_ORDER.filter(s => srcCount[s]).concat(Object.keys(srcCount).filter(s => !SOURCE_ORDER.includes(s)));
+  const regions = REGION_ORDER.filter(r => regCount[r]);
+  const cats = Object.keys(catCount).sort((a, b) => catCount[b] - catCount[a]);
+
+  renderChips('source-chips', sources, F.sources, srcCount);
+  renderChips('region-chips', regions, F.regions, regCount);
+  renderChips('cat-chips', cats, F.cats, catCount);
+  renderFreshChips();
+}
+function renderChips(containerId, items, activeSet, counts) {
+  const el = document.getElementById(containerId);
+  el.innerHTML = '';
+  const allBtn = document.createElement('div');
+  allBtn.className = 'chip' + (activeSet.size === 0 ? ' active' : '');
+  allBtn.textContent = '全部';
+  allBtn.onclick = () => { activeSet.clear(); buildChips(); render(); };
+  el.appendChild(allBtn);
+  items.forEach(item => {
+    const chip = document.createElement('div');
+    chip.className = 'chip' + (activeSet.has(item) ? ' active' : '');
+    chip.innerHTML = escHtml(item) + (counts ? `<span class="n">${counts[item] || 0}</span>` : '');
+    chip.onclick = () => { activeSet.has(item) ? activeSet.delete(item) : activeSet.add(item); buildChips(); render(); };
+    el.appendChild(chip);
+  });
+}
+function renderFreshChips() {
+  const el = document.getElementById('new-chips');
+  el.innerHTML = '';
+  FRESH_OPTS.forEach(([val, label]) => {
+    if (val === 'visit' && !LAST_VISIT) return;
+    const chip = document.createElement('div');
+    chip.className = 'chip chip-accent' + (F.fresh === val ? ' active' : '');
+    chip.textContent = label;
+    chip.onclick = () => { F.fresh = val; renderFreshChips(); render(); };
+    el.appendChild(chip);
+  });
+}
+function clearFilters() {
+  F.sources.clear(); F.regions.clear(); F.cats.clear(); F.fresh = '';
+  document.getElementById('search').value = '';
+  buildChips(); render();
+}
+function toggleFilters() { document.getElementById('filter-bar').classList.toggle('open'); updateFilterToggle(); }
+function updateFilterToggle() {
+  const n = F.sources.size + F.regions.size + F.cats.size + (F.fresh ? 1 : 0);
+  const open = document.getElementById('filter-bar').classList.contains('open');
+  document.getElementById('filter-toggle').innerHTML = (open ? '▲ 收合' : '☰ 篩選') + (n ? ` <b>${n}</b>` : '');
+}
+
+// ── Filter ────────────────────────────────────────────────────
+function isFresh(e) {
+  if (!F.fresh || !e.first_seen) return true;
+  if (F.fresh === 'visit') return LAST_VISIT ? e.first_seen >= LAST_VISIT.slice(0, 10) : true;
+  const d = new Date(today); d.setDate(d.getDate() - Number(F.fresh));
+  return e.first_seen >= localDateStr(d);
+}
+function filteredEvents(opts = {}) {
+  const hidePast = document.getElementById('hide-past').checked;
+  const showHosp = document.getElementById('show-hospital').checked;
+  const q = document.getElementById('search').value.trim().toLowerCase();
+  let hiddenHospital = 0;
+  const out = ALL_EVENTS.filter(e => {
+    if (F.sources.size && !F.sources.has(e.source)) return false;
+    if (F.regions.size && !F.regions.has(e.region)) return false;
+    if (F.cats.size && !F.cats.has(e.category)) return false;
+    if (!isFresh(e)) return false;
+    if (hidePast && !opts.keepPast && e._end < TODAY_STR) return false;
+    if (q && !((e.title + ' ' + e.organizer + ' ' + e.location + ' ' + e.credit).toLowerCase().includes(q))) return false;
+    if (!showHosp && e.level === 'hospital') { hiddenHospital++; return false; }
+    return true;
+  });
+  out.hiddenHospital = hiddenHospital;
+  return out;
+}
+
+// ── Render ────────────────────────────────────────────────────
+function render() {
+  try {
+    localStorage.setItem('chest-radar:filters', JSON.stringify({
+      sources: [...F.sources], regions: [...F.regions],
+      hospital: document.getElementById('show-hospital').checked,
+      hidePast: document.getElementById('hide-past').checked,
+    }));
+  } catch (e) { /* ignore */ }
+  const events = filteredEvents();
+  const hosp = events.hiddenHospital;
+  updateFilterToggle();
+  document.getElementById('count-label').innerHTML =
+    `共 <b>${events.length}</b> 筆` + (hosp ? `　<a onclick="toggleHospital()">另有 ${hosp} 筆各院討論會已隱藏</a>` : '');
+  renderList(events, hosp);
+  renderCalendar(filteredEvents({ keepPast: true }));
+}
+function toggleHospital() {
+  const cb = document.getElementById('show-hospital');
+  cb.checked = !cb.checked; buildChips(); render();
+}
+
+// ── List view ─────────────────────────────────────────────────
+function dateBox(e) {
+  const d = parseDate(e._d);
+  if (!d) return `<div class="day">—</div>`;
+  const end = e.end_date ? parseDate(e.end_date) : null;
+  let day = String(d.getDate());
+  let cls = 'day';
+  if (end && end.getTime() !== d.getTime()) {
+    day = (end.getMonth() === d.getMonth()) ? `${d.getDate()}–${end.getDate()}` : `${d.getDate()}–${end.getMonth()+1}/${end.getDate()}`;
+    cls += ' range';
+  }
+  return `<div class="${cls}">${day}</div><div class="mon">${MON_EN[d.getMonth()]}</div><div class="wd">週${WD[d.getDay()]}</div>`;
+}
+function freshBadge(e) {
+  if (!e.first_seen) return '';
+  const d3 = new Date(today); d3.setDate(d3.getDate() - 3);
+  const sinceVisit = LAST_VISIT && e.first_seen >= LAST_VISIT.slice(0, 10);
+  return (e.first_seen >= localDateStr(d3) || sinceVisit) ? `<span class="badge badge-new">NEW</span>` : '';
+}
+function metaLine(e) {
+  const parts = [];
+  parts.push(`<span class="badge badge-source">${escHtml(e.source)}</span>`);
+  if (e.category) parts.push(`<span class="badge badge-cat">${escHtml(e.category)}</span>`);
+  if (e.online) parts.push(`<span class="badge badge-online">線上</span>`);
+  else if (e.region && e.region !== '未標示') parts.push(`<span class="badge badge-region">${escHtml(e.region)}</span>`);
+  if (e.time) parts.push(`<span class="m">🕒 ${escHtml(e.time)}</span>`);
+  if (e.location && !e.online) parts.push(`<span class="m">📍 ${escHtml(e.location)}</span>`);
+  if (e.organizer && e.organizer !== e.location) parts.push(`<span class="m">🏛 ${escHtml(e.organizer)}</span>`);
+  if (e.credit) parts.push(`<span class="m">🎓 ${escHtml(e.credit)}</span>`);
+  return parts.join('');
+}
+function cardHtml(e) {
+  const isPast = e._end < TODAY_STR;
+  const isToday = e._d <= TODAY_STR && e._end >= TODAY_STR;
+  return `
+  <a class="event-card${isPast ? ' past' : ''}${isToday ? ' today' : ''}${e.level === 'hospital' ? ' hospital' : ''}"
+     href="${escHtml(e.url)}" target="_blank" rel="noopener">
+    <div class="event-date">${dateBox(e)}</div>
+    <div class="event-body">
+      <div class="event-title">${freshBadge(e)} ${escHtml(e.title)}</div>
+      <div class="event-meta">${metaLine(e)}</div>
+    </div>
+    <div class="event-arrow">›</div>
+  </a>`;
+}
+function renderList(events, hiddenHospital) {
+  const el = document.getElementById('event-list');
+  if (!events.length) {
+    el.innerHTML = `<div class="empty"><div class="empty-icon">📭</div><p>沒有符合條件的課程</p>` +
+      (hiddenHospital ? `<p style="margin-top:8px"><a onclick="toggleHospital()" style="cursor:pointer;text-decoration:underline">顯示 ${hiddenHospital} 筆各院討論會</a></p>` : '') + `</div>`;
+    return;
+  }
+  let html = '', lastMonth = null;
+  events.forEach(e => {
+    const d = parseDate(e._d);
+    const mon = d ? `${d.getFullYear()} 年 ${MON_ZH[d.getMonth()]}` : '日期未定';
+    if (mon !== lastMonth) { html += `<div class="month-header">${mon}</div>`; lastMonth = mon; }
+    html += cardHtml(e);
+  });
+  if (hiddenHospital) html += `<div class="hidden-note">另有 ${hiddenHospital} 筆各院討論會未顯示 · <a onclick="toggleHospital()">顯示</a></div>`;
+  el.innerHTML = html;
+}
+
+// ── Calendar view ─────────────────────────────────────────────
+function renderCalendar(events) {
+  const y = calYear, m = calMonth;
+  document.getElementById('cal-title').textContent = `${y} 年 ${MON_ZH[m]}`;
+  const map = {};
+  events.forEach(e => {
+    // spread multi-day events over every day they cover (capped at 14 days)
+    const s = parseDate(e._d), en = parseDate(e._end) || s;
+    if (!s) return;
+    for (let d = new Date(s), i = 0; d <= en && i < 14; d.setDate(d.getDate() + 1), i++) {
+      const k = localDateStr(d);
+      (map[k] = map[k] || []).push(e);
+    }
+  });
+  const firstDay = new Date(y, m, 1).getDay();
+  const daysInMonth = new Date(y, m + 1, 0).getDate();
+  const daysInPrev = new Date(y, m, 0).getDate();
+  let html = '', cells = 0;
+  for (let i = firstDay - 1; i >= 0; i--) { html += `<div class="cal-day other-month"><div class="cal-day-num">${daysInPrev - i}</div></div>`; cells++; }
+  for (let d = 1; d <= daysInMonth; d++) {
+    const ds = `${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+    const evs = map[ds] || [];
+    html += `<div class="cal-day${ds === TODAY_STR ? ' today' : ''}${evs.length ? ' has-events' : ''}${calSelected === ds ? ' sel' : ''}" onclick="calPick('${ds}')">`;
+    html += `<div class="cal-day-num">${d}</div><div class="cal-events">`;
+    evs.slice(0, 3).forEach(e => {
+      html += `<a class="cal-event src-${escHtml(e.source)}${e.level === 'hospital' ? ' hospital' : ''}" href="${escHtml(e.url)}" target="_blank" rel="noopener" title="${escHtml(e.title)}" onclick="event.stopPropagation()">${escHtml(e.title)}</a>`;
+    });
+    if (evs.length > 3) html += `<div class="cal-more">+${evs.length - 3}</div>`;
+    html += `</div></div>`;
+    cells++;
+  }
+  const rem = 7 - (cells % 7);
+  if (rem < 7) for (let d = 1; d <= rem; d++) html += `<div class="cal-day other-month"><div class="cal-day-num">${d}</div></div>`;
+  document.getElementById('cal-days').innerHTML = html;
+
+  // day list under the grid (the only way to read titles on a phone)
+  const dl = document.getElementById('cal-daylist');
+  const pick = calSelected && map[calSelected] ? calSelected : null;
+  if (pick) {
+    const d = parseDate(pick);
+    dl.innerHTML = `<h3>${d.getMonth() + 1}/${d.getDate()}（週${WD[d.getDay()]}）共 ${map[pick].length} 筆</h3>` + map[pick].map(cardHtml).join('');
+  } else {
+    dl.innerHTML = `<p style="font-size:12px;color:var(--gray-400);text-align:center">點選日期可列出當天課程</p>`;
+  }
+}
+function calPick(ds) { calSelected = (calSelected === ds) ? null : ds; renderCalendar(filteredEvents({ keepPast: true })); }
+function calMove(dir) {
+  calMonth += dir;
+  if (calMonth > 11) { calMonth = 0; calYear++; }
+  if (calMonth < 0) { calMonth = 11; calYear--; }
+  calSelected = null;
+  renderCalendar(filteredEvents({ keepPast: true }));
+}
+function calToday() { calYear = today.getFullYear(); calMonth = today.getMonth(); calSelected = TODAY_STR; renderCalendar(filteredEvents({ keepPast: true })); }
+
+// ── Tabs ──────────────────────────────────────────────────────
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  document.getElementById('view-list').style.display = tab === 'list' ? 'block' : 'none';
+  document.getElementById('view-calendar').style.display = tab === 'calendar' ? 'block' : 'none';
+}
+
+// ── Utils ─────────────────────────────────────────────────────
+function escHtml(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+function parseDate(s) { if (!s) return null; const [y, m, d] = s.split('-').map(Number); return new Date(y, m - 1, d); }
+function localDateStr(d) { return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; }
+
+boot();
+</script>
+</body>
+</html>

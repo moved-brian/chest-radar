@@ -1,0 +1,42 @@
+name: 自動更新課程資料
+
+on:
+  schedule:
+    - cron: '17 */12 * * *'   # 每 12 小時（UTC 00:17 / 12:17 ＝ 台灣 08:17 / 20:17）
+  workflow_dispatch:           # 允許在 Actions 頁面手動觸發
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scrape
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: 設定 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 安裝套件
+        run: pip install -r requirements.txt
+
+      - name: 執行爬蟲
+        run: python run.py --past-days 7
+
+      - name: 推送更新資料
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/events.json data/seen.json
+          git diff --staged --quiet || git commit -m "chore: 自動更新課程資料 $(TZ=Asia/Taipei date +'%Y-%m-%d %H:%M')"
+          git pull --rebase origin main || true
+          git push
