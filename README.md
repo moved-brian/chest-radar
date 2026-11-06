@@ -15,6 +15,7 @@
 | 急救加護 | 台灣急救加護醫學會 | 聯甄課程、非聯甄、ACLS 委員會課程、最新消息 | 同一筆會出現在多個列表，以編號去重 |
 | 重症醫學會 | 中華民國重症醫學會 | 其他學會課程、重症課程、聯甄課程 | 爬蟲沿用麻醉雷達 |
 | 睡眠學會 | 台灣睡眠醫學學會 | `learn_list.php?sdate=&edate=` | 以日期區間只抓未來 120 天 |
+| ERS | European Respiratory Society | `ersnet.org/webinars/` ＋ 每場的詳細頁 | 只收 webinar；時間（CET/CEST）換算成台灣時間，晚間場次會落在台灣隔天凌晨，原始時間寫在 `note` |
 
 ## 每筆資料的欄位（`data/events.json`）
 
@@ -27,7 +28,7 @@
   "category": "各院討論會", "level": "hospital",
   "organizer": "台大醫學院附設醫院內科部胸腔科",
   "location": "台大醫院14C錫琴講堂", "region": "北區", "online": false,
-  "credit": "胸重 B類 2 分",
+  "credit": "胸重 B類 2 分", "note": "",
   "url": "https://tspccm.formosasoft.com/conference/10268",
   "first_seen": "2026-10-24", "scraped_at": "2026-10-24T00:17:00Z"
 }
@@ -58,3 +59,4 @@ python run.py --past-days 30       # 保留過去 30 天
 - 只抓各學會**公開頁面**的標題與連結，每筆都導回原公告；非官方彙整，實際資訊以主辦單位為準。
 - 台灣內科醫學會（tsim.org.tw）的課程頁網址已變更，暫未收錄。
 - 台灣肺癌研究學會（taslc.org.tw）與 TSPCCM 是同一套系統，活動也都登錄在 TSPCCM，不另外抓。
+- American Thoracic Society（site.thoracic.org/events）整個網域都在 Cloudflare 人機驗證後面，自動程式只會拿到 403 驗證頁，未收錄。

@@ -18,6 +18,7 @@ Every scraper exposes  scrape() -> list[dict]  and returns events in this schema
     "region":     "北區" | "中區" | "南區" | "東區" | "外島" | "線上" | "國外" | "未標示",
     "online":     bool,
     "credit":     "胸重 B類 2 分" | "",
+    "note":       str,                 # 補充說明（例：國際 webinar 換算前的原始時間），多數為 ""
     "url":        str,
     "scraped_at": ISO datetime (UTC)
 }
@@ -307,7 +308,8 @@ def guess_category(title: str, level: str, default: str = "學術研討會") -> 
 def make_event(*, id: str, title: str, date: Optional[str], source: str, source_name: str,
                category: str, level: str, organizer: str = "", location: str = "",
                url: str = "", credit: str = "", time: str = "", end_date: Optional[str] = None,
-               region: Optional[str] = None, online: Optional[bool] = None) -> dict:
+               region: Optional[str] = None, online: Optional[bool] = None,
+               note: str = "") -> dict:
     title = re.sub(r"\s+", " ", (title or "")).strip()
     organizer = re.sub(r"\s+", " ", (organizer or "")).strip()
     location = re.sub(r"\s+", " ", (location or "")).strip()
@@ -330,6 +332,7 @@ def make_event(*, id: str, title: str, date: Optional[str], source: str, source_
         "region":      region,
         "online":      bool(online),
         "credit":      (credit or "").strip(),
+        "note":        (note or "").strip(),
         "url":         url,
         "scraped_at":  now_iso(),
     }

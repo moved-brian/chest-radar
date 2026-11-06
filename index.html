@@ -27,6 +27,7 @@
   --gray-600:   #5a6480;
   --text:       #1a2340;
   --green:      #138a63;
+  --star:       #e0a800;
   --radius:     6px;
   --shadow:     0 2px 12px rgba(13,43,69,0.10);
 }
@@ -138,11 +139,13 @@ header {
   gap: 0 12px; align-items: start; margin-bottom: 5px;
   text-decoration: none; color: inherit; box-shadow: var(--shadow);
   transition: border-color .12s, box-shadow .12s, transform .08s;
+  position: relative;
 }
 .event-card:hover { border-color: var(--accent); box-shadow: 0 4px 20px rgba(240,138,36,0.14); transform: translateY(-1px); }
 .event-card.past { opacity: .5; }
 .event-card.today { border-left: 3px solid var(--accent); }
 .event-card.hospital { background: #fbfbfd; }
+.event-card.starred { border-color: var(--star); background: #fffdf4; }
 .event-date { text-align: center; padding: 2px 0; border-right: 2px solid var(--gray-200); }
 .event-date .day { font-size: 21px; font-weight: 700; line-height: 1.1; color: var(--navy); }
 .event-date .day.range { font-size: 15px; letter-spacing: -.02em; }
@@ -155,6 +158,9 @@ header {
   font-size: 14px; font-weight: 600; color: var(--navy); line-height: 1.4; margin-bottom: 4px;
   overflow-wrap: anywhere;
 }
+/* 整張卡片仍可點：標題連結的 ::after 蓋滿卡片，動作鈕用 z-index 浮在上面 */
+.event-title a { color: inherit; text-decoration: none; }
+.event-title a::after { content: ''; position: absolute; inset: 0; }
 .event-meta { display: flex; flex-wrap: wrap; gap: 4px 6px; align-items: center; font-size: 12px; color: var(--gray-600); }
 .event-meta .m { overflow-wrap: anywhere; }
 .badge { font-size: 11px; padding: 1px 7px; border-radius: 10px; font-weight: 500; white-space: nowrap; }
@@ -163,6 +169,16 @@ header {
 .badge-new    { background: var(--accent); color: #fff; font-weight: 700; }
 .badge-online { background: #e6f4f0; color: var(--green); border: 1px solid #bfe3d6; }
 .badge-region { background: #fff4e8; color: var(--accent-dim); border: 1px solid #f9d9b5; }
+/* 動作鈕：⭐ 收藏（存在瀏覽器 localStorage）/ 📅 加入 Google 行事曆 */
+.event-acts { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 7px; position: relative; z-index: 1; width: fit-content; }
+.act {
+  padding: 2px 10px; border-radius: 12px; border: 1px solid var(--gray-200);
+  background: #fff; color: var(--gray-600); font: inherit; font-size: 11px; line-height: 1.6;
+  cursor: pointer; text-decoration: none; white-space: nowrap; transition: all .12s;
+}
+.act:hover  { border-color: var(--accent); color: var(--accent-dim); }
+.act:active { transform: scale(.95); }
+.act.star.on { background: #fff6dc; border-color: var(--star); color: #7a5a00; font-weight: 600; }
 .event-arrow { color: var(--gray-400); font-size: 16px; align-self: center; transition: color .12s, transform .12s; }
 .event-card:hover .event-arrow { color: var(--accent); transform: translateX(2px); }
 .hidden-note {
@@ -206,6 +222,7 @@ header {
 .cal-event.src-急救加護  { background: #9f1239; }
 .cal-event.src-重症醫學會 { background: #b45309; }
 .cal-event.src-睡眠學會  { background: #065f46; }
+.cal-event.src-ERS      { background: #a21caf; }
 .cal-event.hospital { opacity: .55; }
 .cal-more { font-size: 10px; color: var(--gray-400); padding: 1px 4px; }
 .cal-daylist { margin-top: 12px; }
@@ -275,6 +292,7 @@ footer a { color: var(--accent); text-decoration: none; }
       <button class="filter-toggle" id="filter-toggle" onclick="toggleFilters()">☰ 篩選</button>
       <label class="toggle"><input type="checkbox" id="show-hospital" onchange="buildChips(); render()"> 含各院討論會</label>
       <label class="toggle"><input type="checkbox" id="hide-past" checked onchange="render()"> 排除過期</label>
+      <label class="toggle"><input type="checkbox" id="only-star" onchange="render()"> ⭐ 只看收藏<span id="star-count"></span></label>
       <button class="clear-btn" onclick="clearFilters()">清除篩選</button>
     </div>
     <div class="filter-row chips"><span class="filter-label">來源</span><div class="filter-chips" id="source-chips"></div></div>
@@ -307,8 +325,9 @@ footer a { color: var(--accent); text-decoration: none; }
 
 <footer>
   資料自動彙整自各學會官網的公開頁面，每一筆都連回原公告；本站為個人彙整，非官方管道，報名與最終資訊請以主辦單位公告為準。<br>
-  來源：台灣胸腔暨重症加護醫學會・台灣肺癌學會・台灣結核暨肺部疾病醫學會・台灣急救加護醫學會・中華民國重症醫學會・台灣睡眠醫學學會<br>
-  「各院討論會」＝單一醫院／科部的例行病例、期刊討論會，預設隱藏，勾選「含各院討論會」即可顯示。
+  來源：台灣胸腔暨重症加護醫學會・台灣肺癌學會・台灣結核暨肺部疾病醫學會・台灣急救加護醫學會・中華民國重症醫學會・台灣睡眠醫學學會・European Respiratory Society（ERS webinars，時間已換算為台灣時間）<br>
+  「各院討論會」＝單一醫院／科部的例行病例、期刊討論會，預設隱藏，勾選「含各院討論會」即可顯示。<br>
+  「⭐ 收藏」只存在這個瀏覽器，換裝置或清除瀏覽資料後不會保留。
 </footer>
 
 <script>
@@ -319,8 +338,9 @@ let calYear, calMonth, calSelected = null;
 const today = new Date(); today.setHours(0,0,0,0);
 const TODAY_STR = localDateStr(today);
 let LAST_VISIT = null;
+const STARS = new Set();      // 收藏的活動 id（localStorage：chest-radar:stars）
 
-const SOURCE_ORDER = ['TSPCCM','肺癌學會','結核學會','急救加護','重症醫學會','睡眠學會'];
+const SOURCE_ORDER = ['TSPCCM','肺癌學會','結核學會','急救加護','重症醫學會','睡眠學會','ERS'];
 const REGION_ORDER = ['北區','中區','南區','東區','外島','線上','國外','未標示'];
 const FRESH_OPTS = [['', '不限'], ['visit', '自上次造訪'], ['3', '近 3 天'], ['7', '近 7 天']];
 const WD = ['日','一','二','三','四','五','六'];
@@ -339,6 +359,8 @@ async function boot() {
       document.getElementById('show-hospital').checked = !!saved.hospital;
       if (saved.hidePast === false) document.getElementById('hide-past').checked = false;
     }
+    const stars = JSON.parse(localStorage.getItem('chest-radar:stars') || '[]');
+    if (Array.isArray(stars)) stars.forEach(id => STARS.add(String(id)));
   } catch (e) { /* storage unavailable: run with defaults */ }
 
   const r = await fetch('data/events.json', { cache: 'no-store' }).catch(() => null);
@@ -419,6 +441,7 @@ function renderFreshChips() {
 function clearFilters() {
   F.sources.clear(); F.regions.clear(); F.cats.clear(); F.fresh = '';
   document.getElementById('search').value = '';
+  document.getElementById('only-star').checked = false;
   buildChips(); render();
 }
 function toggleFilters() { document.getElementById('filter-bar').classList.toggle('open'); updateFilterToggle(); }
@@ -439,15 +462,18 @@ function filteredEvents(opts = {}) {
   const hidePast = document.getElementById('hide-past').checked;
   const showHosp = document.getElementById('show-hospital').checked;
   const q = document.getElementById('search').value.trim().toLowerCase();
+  const onlyStar = document.getElementById('only-star').checked;
   let hiddenHospital = 0;
   const out = ALL_EVENTS.filter(e => {
+    if (onlyStar && !STARS.has(e.id)) return false;
     if (F.sources.size && !F.sources.has(e.source)) return false;
     if (F.regions.size && !F.regions.has(e.region)) return false;
     if (F.cats.size && !F.cats.has(e.category)) return false;
     if (!isFresh(e)) return false;
     if (hidePast && !opts.keepPast && e._end < TODAY_STR) return false;
     if (q && !((e.title + ' ' + e.organizer + ' ' + e.location + ' ' + e.credit).toLowerCase().includes(q))) return false;
-    if (!showHosp && e.level === 'hospital') { hiddenHospital++; return false; }
+    // 只看收藏時，收藏過的各院討論會也照樣列出
+    if (!showHosp && !onlyStar && e.level === 'hospital') { hiddenHospital++; return false; }
     return true;
   });
   out.hiddenHospital = hiddenHospital;
@@ -466,6 +492,8 @@ function render() {
   const events = filteredEvents();
   const hosp = events.hiddenHospital;
   updateFilterToggle();
+  const nStar = ALL_EVENTS.filter(e => STARS.has(e.id)).length;
+  document.getElementById('star-count').textContent = nStar ? `（${nStar}）` : '';
   document.getElementById('count-label').innerHTML =
     `共 <b>${events.length}</b> 筆` + (hosp ? `　<a onclick="toggleHospital()">另有 ${hosp} 筆各院討論會已隱藏</a>` : '');
   renderList(events, hosp);
@@ -505,26 +533,78 @@ function metaLine(e) {
   if (e.location && !e.online) parts.push(`<span class="m">📍 ${escHtml(e.location)}</span>`);
   if (e.organizer && e.organizer !== e.location) parts.push(`<span class="m">🏛 ${escHtml(e.organizer)}</span>`);
   if (e.credit) parts.push(`<span class="m">🎓 ${escHtml(e.credit)}</span>`);
+  if (e.note) parts.push(`<span class="m">🌐 ${escHtml(e.note)}</span>`);
   return parts.join('');
 }
 function cardHtml(e) {
   const isPast = e._end < TODAY_STR;
   const isToday = e._d <= TODAY_STR && e._end >= TODAY_STR;
+  const starred = STARS.has(e.id);
+  let acts = `<button type="button" class="act star${starred ? ' on' : ''}" data-act="star" data-id="${escHtml(e.id)}" aria-pressed="${starred}">⭐ ${starred ? '已收藏' : '收藏'}</button>`;
+  if (e._d && !isPast) acts += `<a class="act" href="${escHtml(gcalUrl(e))}" target="_blank" rel="noopener">📅 加入 Google 行事曆</a>`;
   return `
-  <a class="event-card${isPast ? ' past' : ''}${isToday ? ' today' : ''}${e.level === 'hospital' ? ' hospital' : ''}"
-     href="${escHtml(e.url)}" target="_blank" rel="noopener">
+  <div class="event-card${isPast ? ' past' : ''}${isToday ? ' today' : ''}${e.level === 'hospital' ? ' hospital' : ''}${starred ? ' starred' : ''}">
     <div class="event-date">${dateBox(e)}</div>
     <div class="event-body">
-      <div class="event-title">${freshBadge(e)} ${escHtml(e.title)}</div>
+      <div class="event-title">${freshBadge(e)} <a href="${escHtml(e.url)}" target="_blank" rel="noopener">${escHtml(e.title)}</a></div>
       <div class="event-meta">${metaLine(e)}</div>
+      <div class="event-acts">${acts}</div>
     </div>
     <div class="event-arrow">›</div>
-  </a>`;
+  </div>`;
+}
+
+// ── 收藏 ──────────────────────────────────────────────────────
+function toggleStar(id) {
+  STARS.has(id) ? STARS.delete(id) : STARS.add(id);
+  try { localStorage.setItem('chest-radar:stars', JSON.stringify([...STARS])); } catch (e) { /* ignore */ }
+  render();
+}
+document.addEventListener('click', ev => {
+  const btn = ev.target.closest('[data-act="star"]');
+  if (btn) toggleStar(btn.dataset.id);
+});
+
+// ── Google 行事曆 ─────────────────────────────────────────────
+// 開 Google 行事曆的「新增活動」頁並預填內容；使用者在 Google 頁面按儲存才會寫入，免 API、免授權。
+// 單日且有時間 → 帶時段（只有開始時間時先抓 1 小時）；跨日或沒時間 → 整天活動。
+function gcalUrl(e) {
+  const compact = d => localDateStr(d).replace(/-/g, '');
+  const start = parseDate(e._d), last = parseDate(e._end) || start;
+  const t = /^(\d{1,2}):(\d{2})(?:\s*~\s*(\d{1,2}):(\d{2}))?/.exec(e.time || '');
+  let dates;
+  if (t && last.getTime() === start.getTime()) {
+    const s = new Date(start); s.setHours(+t[1], +t[2]);
+    let en = new Date(start);
+    if (t[3] != null) en.setHours(+t[3], +t[4]);
+    if (t[3] == null) en = new Date(s.getTime() + 3600000);
+    else if (en <= s) en.setDate(en.getDate() + 1);          // 跨午夜（例：換算成台灣時間的 23:00 ~ 00:30）
+    const stamp = d => `${compact(d)}T${String(d.getHours()).padStart(2, '0')}${String(d.getMinutes()).padStart(2, '0')}00`;
+    dates = `${stamp(s)}/${stamp(en)}`;
+  } else {
+    const next = new Date(last); next.setDate(next.getDate() + 1);   // 整天活動的結束日不含當天
+    dates = `${compact(start)}/${compact(next)}`;
+  }
+  const details = [
+    e.organizer ? `主辦：${e.organizer}` : '',
+    e.time ? `時間：${e.time}` : '',
+    e.credit ? `積分：${e.credit}` : '',
+    e.note ? `備註：${e.note}` : '',
+    `來源：${e.source_name || e.source}${e.category ? '｜' + e.category : ''}${e.online ? '｜線上' : ''}`,
+    e.url || '',
+    '（來自 胸腔科進修雷達，實際時間地點請以原公告為準）',
+  ].filter(Boolean).join('\n');
+  const p = new URLSearchParams({ action: 'TEMPLATE', text: e.title, dates, ctz: 'Asia/Taipei', details });
+  if (e.location) p.set('location', e.location);
+  return 'https://calendar.google.com/calendar/render?' + p.toString();
 }
 function renderList(events, hiddenHospital) {
   const el = document.getElementById('event-list');
   if (!events.length) {
-    el.innerHTML = `<div class="empty"><div class="empty-icon">📭</div><p>沒有符合條件的課程</p>` +
+    const hint = document.getElementById('only-star').checked
+      ? '收藏清單裡沒有符合條件的活動<br>按卡片上的「⭐ 收藏」就會出現在這裡'
+      : '沒有符合條件的課程';
+    el.innerHTML = `<div class="empty"><div class="empty-icon">📭</div><p>${hint}</p>` +
       (hiddenHospital ? `<p style="margin-top:8px"><a onclick="toggleHospital()" style="cursor:pointer;text-decoration:underline">顯示 ${hiddenHospital} 筆各院討論會</a></p>` : '') + `</div>`;
     return;
   }
@@ -564,7 +644,7 @@ function renderCalendar(events) {
     html += `<div class="cal-day${ds === TODAY_STR ? ' today' : ''}${evs.length ? ' has-events' : ''}${calSelected === ds ? ' sel' : ''}" onclick="calPick('${ds}')">`;
     html += `<div class="cal-day-num">${d}</div><div class="cal-events">`;
     evs.slice(0, 3).forEach(e => {
-      html += `<a class="cal-event src-${escHtml(e.source)}${e.level === 'hospital' ? ' hospital' : ''}" href="${escHtml(e.url)}" target="_blank" rel="noopener" title="${escHtml(e.title)}" onclick="event.stopPropagation()">${escHtml(e.title)}</a>`;
+      html += `<a class="cal-event src-${escHtml(e.source)}${e.level === 'hospital' ? ' hospital' : ''}" href="${escHtml(e.url)}" target="_blank" rel="noopener" title="${escHtml(e.title)}" onclick="event.stopPropagation()">${STARS.has(e.id) ? '⭐ ' : ''}${escHtml(e.title)}</a>`;
     });
     if (evs.length > 3) html += `<div class="cal-more">+${evs.length - 3}</div>`;
     html += `</div></div>`;

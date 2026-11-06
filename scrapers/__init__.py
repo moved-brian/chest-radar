@@ -4,6 +4,7 @@ from .tstld  import scrape as scrape_tstld
 from .seccm  import scrape as scrape_seccm
 from .tsccm  import scrape as scrape_tsccm
 from .tssm   import scrape as scrape_tssm
+from .ers    import scrape as scrape_ers
 
 # key = short code shown on the site; order = display order of source chips
 ALL_SCRAPERS = {
@@ -13,4 +14,5 @@ ALL_SCRAPERS = {
     "急救加護":  scrape_seccm,    # 台灣急救加護醫學會
     "重症醫學會": scrape_tsccm,   # 中華民國重症醫學會
     "睡眠學會":  scrape_tssm,     # 台灣睡眠醫學學會
+    "ERS":      scrape_ers,      # European Respiratory Society（webinars，時間換算成台灣時間）
 }
