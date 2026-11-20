@@ -1,16 +1,20 @@
 {
- "generated_at": "2026-11-20T07:11:08Z",
- "total": 137,
+ "generated_at": "2026-11-20T20:14:14Z",
+ "total": 130,
  "sources": {
   "TSPCCM": 206,
-  "肺癌學會": 15,
+  "肺癌學會": 0,
   "結核學會": 6,
   "急救加護": 43,
   "重症醫學會": 9,
-  "睡眠學會": 28,
+  "睡眠學會": 27,
   "ERS": 10
  },
- "fetch_errors": {},
+ "fetch_errors": {
+  "肺癌學會": [
+   "https://www.tlcs.org.tw/ehc-tlcs/s/w/edu/courseSearch/courseTypeA"
+  ]
+ },
  "events": [
   {
    "id": "tspccm-10338",
@@ -29,108 +33,8 @@
    "credit": "胸重 B類 32 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10338",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-10-24"
-  },
-  {
-   "id": "tssm-11129",
-   "title": "Adult Sleep-Disordered Breathing (SDB)",
-   "date": "2026-11-13",
-   "end_date": "",
-   "time": "07:30",
-   "source": "睡眠學會",
-   "source_name": "台灣睡眠醫學學會",
-   "category": "各院討論會",
-   "level": "hospital",
-   "organizer": "睡眠中心",
-   "location": "睡眠中心",
-   "region": "線上",
-   "online": true,
-   "credit": "睡眠 1 分",
-   "note": "",
-   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-13&edate=2027-03-20&page=2",
-   "scraped_at": "2026-11-20T07:10:53Z",
-   "first_seen": "2026-10-24"
-  },
-  {
-   "id": "tspccm-10354",
-   "title": "影像診療研討會",
-   "date": "2026-11-13",
-   "end_date": "",
-   "time": "08:00 ~ 09:00",
-   "source": "TSPCCM",
-   "source_name": "胸腔暨重症加護醫學會",
-   "category": "各院討論會",
-   "level": "hospital",
-   "organizer": "胸腔內科",
-   "location": "花蓮慈濟醫院大愛七樓702教室",
-   "region": "東區",
-   "online": false,
-   "credit": "胸重 B類 1 分",
-   "note": "",
-   "url": "https://tspccm.formosasoft.com/conference/10354",
-   "scraped_at": "2026-11-20T07:10:35Z",
-   "first_seen": "2026-10-24"
-  },
-  {
-   "id": "tspccm-10169",
-   "title": "2026年下半年X光討論會",
-   "date": "2026-11-13",
-   "end_date": "",
-   "time": "15:00 ~ 16:30",
-   "source": "TSPCCM",
-   "source_name": "胸腔暨重症加護醫學會",
-   "category": "學術研討會",
-   "level": "society",
-   "organizer": "台灣胸腔暨重症加護醫學會",
-   "location": "台灣胸腔暨重症加護醫學會",
-   "region": "未標示",
-   "online": false,
-   "credit": "胸重 B類 1 分",
-   "note": "",
-   "url": "https://tspccm.formosasoft.com/conference/10169",
-   "scraped_at": "2026-11-20T07:10:35Z",
-   "first_seen": "2026-10-24"
-  },
-  {
-   "id": "tspccm-10396",
-   "title": "臺南地區胸腔病例聯合討論月會",
-   "date": "2026-11-13",
-   "end_date": "",
-   "time": "18:30 ~ 20:45",
-   "source": "TSPCCM",
-   "source_name": "胸腔暨重症加護醫學會",
-   "category": "學術研討會",
-   "level": "society",
-   "organizer": "成大醫院胸腔內科",
-   "location": "禧榕軒大飯店",
-   "region": "南區",
-   "online": false,
-   "credit": "胸重 B類 2 分",
-   "note": "",
-   "url": "https://tspccm.formosasoft.com/conference/10396",
-   "scraped_at": "2026-11-20T07:10:35Z",
-   "first_seen": "2026-11-02"
-  },
-  {
-   "id": "tspccm-10410",
-   "title": "胸腔疾病討論會",
-   "date": "2026-11-13",
-   "end_date": "",
-   "time": "19:15 ~ 21:15",
-   "source": "TSPCCM",
-   "source_name": "胸腔暨重症加護醫學會",
-   "category": "學術研討會",
-   "level": "society",
-   "organizer": "台灣呼吸健康促進協會",
-   "location": "板橋馥華艾美酒店 3F莫內廳",
-   "region": "北區",
-   "online": false,
-   "credit": "胸重 B類 2 分",
-   "note": "",
-   "url": "https://tspccm.formosasoft.com/conference/10410",
-   "scraped_at": "2026-11-20T07:10:35Z",
-   "first_seen": "2026-11-02"
   },
   {
    "id": "tssm-11222",
@@ -148,8 +52,8 @@
    "online": false,
    "credit": "睡眠 2 分",
    "note": "",
-   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-13&edate=2027-03-20&page=2",
-   "scraped_at": "2026-11-20T07:10:53Z",
+   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-14&edate=2027-03-21&page=2",
+   "scraped_at": "2026-11-20T20:14:00Z",
    "first_seen": "2026-10-24"
   },
   {
@@ -168,8 +72,8 @@
    "online": false,
    "credit": "睡眠 1 分",
    "note": "",
-   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-13&edate=2027-03-20&page=2",
-   "scraped_at": "2026-11-20T07:10:53Z",
+   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-14&edate=2027-03-21&page=2",
+   "scraped_at": "2026-11-20T20:14:00Z",
    "first_seen": "2026-11-08"
   },
   {
@@ -189,7 +93,7 @@
    "credit": "胸重 B類 4 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10392",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-11-02"
   },
   {
@@ -208,8 +112,8 @@
    "online": false,
    "credit": "睡眠 2 分",
    "note": "",
-   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-13&edate=2027-03-20&page=2",
-   "scraped_at": "2026-11-20T07:10:53Z",
+   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-14&edate=2027-03-21&page=2",
+   "scraped_at": "2026-11-20T20:14:00Z",
    "first_seen": "2026-10-24"
   },
   {
@@ -229,7 +133,7 @@
    "credit": "胸重 B類 3 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10370",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-10-24"
   },
   {
@@ -249,7 +153,7 @@
    "credit": "胸重 B類 3 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10393",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-11-02"
   },
   {
@@ -268,8 +172,8 @@
    "online": false,
    "credit": "睡眠 1 分",
    "note": "",
-   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-13&edate=2027-03-20&page=2",
-   "scraped_at": "2026-11-20T07:10:53Z",
+   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-14&edate=2027-03-21&page=2",
+   "scraped_at": "2026-11-20T20:14:00Z",
    "first_seen": "2026-11-14"
   },
   {
@@ -289,7 +193,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10417",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-11-02"
   },
   {
@@ -309,7 +213,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10388",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-11-02"
   },
   {
@@ -329,7 +233,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10383",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-10-24"
   },
   {
@@ -348,8 +252,8 @@
    "online": false,
    "credit": "睡眠 2 分",
    "note": "",
-   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-13&edate=2027-03-20&page=2",
-   "scraped_at": "2026-11-20T07:10:53Z",
+   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-14&edate=2027-03-21&page=2",
+   "scraped_at": "2026-11-20T20:14:00Z",
    "first_seen": "2026-11-08"
   },
   {
@@ -368,8 +272,8 @@
    "online": true,
    "credit": "睡眠 2 分",
    "note": "",
-   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-13&edate=2027-03-20&page=2",
-   "scraped_at": "2026-11-20T07:10:53Z",
+   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-14&edate=2027-03-21&page=2",
+   "scraped_at": "2026-11-20T20:14:00Z",
    "first_seen": "2026-10-24"
   },
   {
@@ -389,7 +293,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10351",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-10-24"
   },
   {
@@ -409,7 +313,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10391",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-11-02"
   },
   {
@@ -429,7 +333,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10418",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-11-02"
   },
   {
@@ -449,7 +353,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10343",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-10-24"
   },
   {
@@ -469,7 +373,7 @@
    "credit": "胸重 B類 3 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10368",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-10-24"
   },
   {
@@ -489,7 +393,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10325",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-10-24"
   },
   {
@@ -509,7 +413,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10400",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-11-02"
   },
   {
@@ -529,7 +433,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10449",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-11-04"
   },
   {
@@ -549,7 +453,7 @@
    "credit": "胸重 B類 3 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10371",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-10-24"
   },
   {
@@ -568,8 +472,8 @@
    "online": false,
    "credit": "睡眠 1 分",
    "note": "",
-   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-13&edate=2027-03-20&page=2",
-   "scraped_at": "2026-11-20T07:10:53Z",
+   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-14&edate=2027-03-21&page=2",
+   "scraped_at": "2026-11-20T20:14:00Z",
    "first_seen": "2026-11-08"
   },
   {
@@ -589,7 +493,7 @@
    "credit": "胸重 B類 2 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10381",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-10-24"
   },
   {
@@ -608,8 +512,8 @@
    "online": false,
    "credit": "睡眠 1 分",
    "note": "",
-   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-13&edate=2027-03-20&page=2",
-   "scraped_at": "2026-11-20T07:10:53Z",
+   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-14&edate=2027-03-21&page=2",
+   "scraped_at": "2026-11-20T20:14:00Z",
    "first_seen": "2026-11-14"
   },
   {
@@ -628,8 +532,8 @@
    "online": true,
    "credit": "睡眠 1 分",
    "note": "",
-   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-13&edate=2027-03-20&page=2",
-   "scraped_at": "2026-11-20T07:10:53Z",
+   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-14&edate=2027-03-21&page=2",
+   "scraped_at": "2026-11-20T20:14:00Z",
    "first_seen": "2026-10-24"
   },
   {
@@ -649,7 +553,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10456",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-11-17"
   },
   {
@@ -668,8 +572,8 @@
    "online": false,
    "credit": "睡眠 1 分",
    "note": "",
-   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-13&edate=2027-03-20&page=2",
-   "scraped_at": "2026-11-20T07:10:53Z",
+   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-14&edate=2027-03-21&page=2",
+   "scraped_at": "2026-11-20T20:14:00Z",
    "first_seen": "2026-11-14"
   },
   {
@@ -689,7 +593,7 @@
    "credit": "胸重 B類 4 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10397",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-11-02"
   },
   {
@@ -709,7 +613,7 @@
    "credit": "胸重 B類 4 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10404",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-11-02"
   },
   {
@@ -729,7 +633,7 @@
    "credit": "胸重 B類 8 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10328",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-10-24"
   },
   {
@@ -749,7 +653,7 @@
    "credit": "胸重 B類 8 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10450",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-11-17"
   },
   {
@@ -769,7 +673,7 @@
    "credit": "胸重 B類 4 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10394",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-11-02"
   },
   {
@@ -789,7 +693,7 @@
    "credit": "胸重 B類 8 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10420",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-11-02"
   },
   {
@@ -809,27 +713,7 @@
    "credit": "胸重 B類 3 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10458",
-   "scraped_at": "2026-11-20T07:10:35Z",
-   "first_seen": "2026-11-17"
-  },
-  {
-   "id": "tlcs-1486",
-   "title": "2026 ASPIRE Workshop",
-   "date": "2026-11-21",
-   "end_date": "2026-11-22",
-   "time": "14:30 起",
-   "source": "肺癌學會",
-   "source_name": "台灣肺癌學會",
-   "category": "工作坊",
-   "level": "society",
-   "organizer": "台灣肺癌學會",
-   "location": "板橋艾美",
-   "region": "北區",
-   "online": false,
-   "credit": "肺癌 14 分",
-   "note": "",
-   "url": "https://www.tlcs.org.tw/ehc-tlcs/s/w/edu/scheduleInfo1/schedule/1486",
-   "scraped_at": "2026-11-20T07:10:38Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-11-17"
   },
   {
@@ -849,7 +733,7 @@
    "credit": "重症聯甄",
    "note": "",
    "url": "https://www.seccm.org.tw/news/acls_union_info.asp?/815.html",
-   "scraped_at": "2026-11-20T07:10:42Z",
+   "scraped_at": "2026-11-20T20:13:46Z",
    "first_seen": "2026-10-24"
   },
   {
@@ -869,7 +753,7 @@
    "credit": "重症 2",
    "note": "",
    "url": "https://www.tsccm.org.tw/Academic/index_other.asp",
-   "scraped_at": "2026-11-20T07:10:46Z",
+   "scraped_at": "2026-11-20T20:13:53Z",
    "first_seen": "2026-10-24"
   },
   {
@@ -889,7 +773,7 @@
    "credit": "胸重 B類 3 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10459",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-11-17"
   },
   {
@@ -909,7 +793,7 @@
    "credit": "胸重 B類 8 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10390",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-11-02"
   },
   {
@@ -929,7 +813,7 @@
    "credit": "重症 2",
    "note": "",
    "url": "https://www.tsccm.org.tw/Academic/index_other.asp",
-   "scraped_at": "2026-11-20T07:10:46Z",
+   "scraped_at": "2026-11-20T20:13:53Z",
    "first_seen": "2026-10-24"
   },
   {
@@ -949,7 +833,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10419",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-11-02"
   },
   {
@@ -969,7 +853,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10363",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-10-24"
   },
   {
@@ -989,7 +873,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10421",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-11-02"
   },
   {
@@ -1008,8 +892,8 @@
    "online": true,
    "credit": "睡眠 1 分",
    "note": "",
-   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-13&edate=2027-03-20&page=2",
-   "scraped_at": "2026-11-20T07:10:53Z",
+   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-14&edate=2027-03-21&page=2",
+   "scraped_at": "2026-11-20T20:14:00Z",
    "first_seen": "2026-10-24"
   },
   {
@@ -1029,7 +913,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10412",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-11-02"
   },
   {
@@ -1049,7 +933,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10356",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-10-24"
   },
   {
@@ -1069,7 +953,7 @@
    "credit": "胸重 B類 3 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10444",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-11-04"
   },
   {
@@ -1089,7 +973,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10428",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-11-04"
   },
   {
@@ -1108,8 +992,8 @@
    "online": false,
    "credit": "睡眠 1 分",
    "note": "",
-   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-13&edate=2027-03-20&page=2",
-   "scraped_at": "2026-11-20T07:10:53Z",
+   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-14&edate=2027-03-21&page=2",
+   "scraped_at": "2026-11-20T20:14:00Z",
    "first_seen": "2026-11-08"
   },
   {
@@ -1129,7 +1013,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10401",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-11-02"
   },
   {
@@ -1148,8 +1032,8 @@
    "online": false,
    "credit": "睡眠 2 分",
    "note": "",
-   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-13&edate=2027-03-20&page=1",
-   "scraped_at": "2026-11-20T07:10:51Z",
+   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-14&edate=2027-03-21&page=1",
+   "scraped_at": "2026-11-20T20:13:58Z",
    "first_seen": "2026-11-08"
   },
   {
@@ -1168,8 +1052,8 @@
    "online": false,
    "credit": "睡眠 1 分",
    "note": "",
-   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-13&edate=2027-03-20&page=1",
-   "scraped_at": "2026-11-20T07:10:51Z",
+   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-14&edate=2027-03-21&page=1",
+   "scraped_at": "2026-11-20T20:13:58Z",
    "first_seen": "2026-11-08"
   },
   {
@@ -1189,7 +1073,7 @@
    "credit": "胸重 B類 2 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10382",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-10-24"
   },
   {
@@ -1209,7 +1093,7 @@
    "credit": "胸重 B類 2 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10349",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-10-24"
   },
   {
@@ -1229,7 +1113,7 @@
    "credit": "",
    "note": "已換算台灣時間；原訂 11/26 13:00-14:00 CET",
    "url": "https://channel.ersnet.org/media-122573-unite4tb-emerging-findings-and-progress-towards-better-tuberculosis-treatment-26-november-2026",
-   "scraped_at": "2026-11-20T07:10:56Z",
+   "scraped_at": "2026-11-20T20:14:02Z",
    "first_seen": "2026-11-06"
   },
   {
@@ -1249,7 +1133,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10374",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-10-24"
   },
   {
@@ -1269,7 +1153,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10457",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-11-17"
   },
   {
@@ -1289,7 +1173,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10413",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-11-02"
   },
   {
@@ -1309,7 +1193,7 @@
    "credit": "胸重 B類 16 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10372",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-10-24"
   },
   {
@@ -1329,7 +1213,7 @@
    "credit": "胸重 B類 3 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10427",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-11-04"
   },
   {
@@ -1349,7 +1233,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10170",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-10-24"
   },
   {
@@ -1368,8 +1252,8 @@
    "online": false,
    "credit": "睡眠 1 分",
    "note": "",
-   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-13&edate=2027-03-20&page=1",
-   "scraped_at": "2026-11-20T07:10:51Z",
+   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-14&edate=2027-03-21&page=1",
+   "scraped_at": "2026-11-20T20:13:58Z",
    "first_seen": "2026-11-08"
   },
   {
@@ -1389,28 +1273,8 @@
    "credit": "胸重 B類 8 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10463",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-11-17"
-  },
-  {
-   "id": "tlcs-1481",
-   "title": "2026 Pan-Tumor Annual Review & TOS Winter Summit (第三場)",
-   "date": "2026-11-29",
-   "end_date": "",
-   "time": "09:00 ~ 15:50",
-   "source": "肺癌學會",
-   "source_name": "台灣肺癌學會",
-   "category": "肺癌積分活動",
-   "level": "society",
-   "organizer": "中華民國癌症醫學會",
-   "location": "張榮發國際會議中心10樓1001會議室(台北市中山南路11號)",
-   "region": "北區",
-   "online": false,
-   "credit": "肺癌 1 分",
-   "note": "",
-   "url": "https://www.tlcs.org.tw/ehc-tlcs/s/w/edu/scheduleInfo1/schedule/1481",
-   "scraped_at": "2026-11-20T07:10:38Z",
-   "first_seen": "2026-11-13"
   },
   {
    "id": "tspccm-10425",
@@ -1429,7 +1293,7 @@
    "credit": "胸重 B類 2 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10425",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-11-04"
   },
   {
@@ -1449,7 +1313,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10414",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-11-02"
   },
   {
@@ -1469,7 +1333,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10429",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:20Z",
    "first_seen": "2026-11-04"
   },
   {
@@ -1489,7 +1353,7 @@
    "credit": "",
    "note": "已換算台灣時間；原訂 11/30 17:00-18:00 CET",
    "url": "https://channel.ersnet.org/media-122479-thoracic-oncology-year-in-review-2026-30-november-2026",
-   "scraped_at": "2026-11-20T07:10:58Z",
+   "scraped_at": "2026-11-20T20:14:03Z",
    "first_seen": "2026-11-06"
   },
   {
@@ -1509,7 +1373,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10406",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-11-02"
   },
   {
@@ -1529,7 +1393,7 @@
    "credit": "",
    "note": "已換算台灣時間；原訂 12/1 17:00-18:00 CET",
    "url": "https://channel.ersnet.org/media-121692-the-exposome-approach-in-respiratory-diseases-where-do-we-stand-and-whats-next-1-december-2026",
-   "scraped_at": "2026-11-20T07:10:59Z",
+   "scraped_at": "2026-11-20T20:14:05Z",
    "first_seen": "2026-11-06"
   },
   {
@@ -1549,7 +1413,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10375",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-10-24"
   },
   {
@@ -1569,7 +1433,7 @@
    "credit": "胸重 B類 3 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10445",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-11-04"
   },
   {
@@ -1589,7 +1453,7 @@
    "credit": "胸重 B類 2 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10389",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-11-02"
   },
   {
@@ -1609,7 +1473,7 @@
    "credit": "胸重 B類 2 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10436",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-11-04"
   },
   {
@@ -1629,7 +1493,7 @@
    "credit": "",
    "note": "已換算台灣時間；原訂 12/3 18:00-19:00 CET",
    "url": "https://channel.ersnet.org/media-122477-unravelling-the-hf-copd-diagnostic-puzzle-a-joint-esc-ers-webinar-3-december-2026",
-   "scraped_at": "2026-11-20T07:11:00Z",
+   "scraped_at": "2026-11-20T20:14:06Z",
    "first_seen": "2026-11-06"
   },
   {
@@ -1648,8 +1512,8 @@
    "online": true,
    "credit": "睡眠 1 分",
    "note": "",
-   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-13&edate=2027-03-20&page=1",
-   "scraped_at": "2026-11-20T07:10:51Z",
+   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-14&edate=2027-03-21&page=1",
+   "scraped_at": "2026-11-20T20:13:58Z",
    "first_seen": "2026-11-08"
   },
   {
@@ -1668,8 +1532,8 @@
    "online": false,
    "credit": "睡眠 3 分",
    "note": "",
-   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-13&edate=2027-03-20&page=1",
-   "scraped_at": "2026-11-20T07:10:51Z",
+   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-14&edate=2027-03-21&page=1",
+   "scraped_at": "2026-11-20T20:13:58Z",
    "first_seen": "2026-10-24"
   },
   {
@@ -1689,7 +1553,7 @@
    "credit": "胸重 B類 2 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10378",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-10-24"
   },
   {
@@ -1709,7 +1573,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10171",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-10-24"
   },
   {
@@ -1728,8 +1592,8 @@
    "online": false,
    "credit": "睡眠 8 分",
    "note": "",
-   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-13&edate=2027-03-20&page=1",
-   "scraped_at": "2026-11-20T07:10:51Z",
+   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-14&edate=2027-03-21&page=1",
+   "scraped_at": "2026-11-20T20:13:58Z",
    "first_seen": "2026-11-08"
   },
   {
@@ -1749,7 +1613,7 @@
    "credit": "胸重 B類 6 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10452",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-11-17"
   },
   {
@@ -1769,7 +1633,7 @@
    "credit": "胸重 B類 12 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10443",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-11-04"
   },
   {
@@ -1788,8 +1652,8 @@
    "online": false,
    "credit": "睡眠 5 分",
    "note": "",
-   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-13&edate=2027-03-20&page=1",
-   "scraped_at": "2026-11-20T07:10:51Z",
+   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-14&edate=2027-03-21&page=1",
+   "scraped_at": "2026-11-20T20:13:58Z",
    "first_seen": "2026-11-14"
   },
   {
@@ -1809,7 +1673,7 @@
    "credit": "胸重 申請中",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10273",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-10-24"
   },
   {
@@ -1828,8 +1692,8 @@
    "online": false,
    "credit": "睡眠 8 分",
    "note": "",
-   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-13&edate=2027-03-20&page=1",
-   "scraped_at": "2026-11-20T07:10:51Z",
+   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-14&edate=2027-03-21&page=1",
+   "scraped_at": "2026-11-20T20:13:58Z",
    "first_seen": "2026-11-08"
   },
   {
@@ -1849,7 +1713,7 @@
    "credit": "胸重 B類 5 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10453",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-11-17"
   },
   {
@@ -1869,7 +1733,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10432",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-11-04"
   },
   {
@@ -1889,7 +1753,7 @@
    "credit": "胸重 B類 8 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10455",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-11-17"
   },
   {
@@ -1909,7 +1773,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10407",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-11-02"
   },
   {
@@ -1929,7 +1793,7 @@
    "credit": "",
    "note": "已換算台灣時間；原訂 12/8 17:00-18:00 CET",
    "url": "https://channel.ersnet.org/media-122359-interstitial-lung-disease-clinical-year-in-review-2026-8-december-2026",
-   "scraped_at": "2026-11-20T07:11:01Z",
+   "scraped_at": "2026-11-20T20:14:07Z",
    "first_seen": "2026-11-06"
   },
   {
@@ -1949,7 +1813,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10395",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-11-02"
   },
   {
@@ -1969,7 +1833,7 @@
    "credit": "胸重 B類 3 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10446",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-11-04"
   },
   {
@@ -1989,7 +1853,7 @@
    "credit": "胸重 B類 2 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10441",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-11-04"
   },
   {
@@ -2009,7 +1873,7 @@
    "credit": "胸重 B類 2 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10437",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-11-04"
   },
   {
@@ -2028,8 +1892,8 @@
    "online": true,
    "credit": "睡眠 1 分",
    "note": "",
-   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-13&edate=2027-03-20&page=1",
-   "scraped_at": "2026-11-20T07:10:51Z",
+   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-14&edate=2027-03-21&page=1",
+   "scraped_at": "2026-11-20T20:13:58Z",
    "first_seen": "2026-10-24"
   },
   {
@@ -2049,7 +1913,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10454",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-11-17"
   },
   {
@@ -2069,7 +1933,7 @@
    "credit": "胸重 B類 3 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10462",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-11-17"
   },
   {
@@ -2089,7 +1953,7 @@
    "credit": "",
    "note": "已換算台灣時間；原訂 12/11 15:00-16:00 CET",
    "url": "https://channel.ersnet.org/media-122360-sleep-disordered-breathing-year-in-review-2026-11-december-2026",
-   "scraped_at": "2026-11-20T07:11:03Z",
+   "scraped_at": "2026-11-20T20:14:08Z",
    "first_seen": "2026-11-06"
   },
   {
@@ -2108,8 +1972,8 @@
    "online": false,
    "credit": "睡眠 4 分",
    "note": "",
-   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-13&edate=2027-03-20&page=1",
-   "scraped_at": "2026-11-20T07:10:51Z",
+   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-14&edate=2027-03-21&page=1",
+   "scraped_at": "2026-11-20T20:13:58Z",
    "first_seen": "2026-11-08"
   },
   {
@@ -2129,7 +1993,7 @@
    "credit": "",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10331",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-10-24"
   },
   {
@@ -2149,7 +2013,7 @@
    "credit": "重症",
    "note": "",
    "url": "https://www.tsccm.org.tw/od/Academic/index.asp?act_kindid=1",
-   "scraped_at": "2026-11-20T07:10:47Z",
+   "scraped_at": "2026-11-20T20:13:54Z",
    "first_seen": "2026-11-11"
   },
   {
@@ -2169,7 +2033,7 @@
    "credit": "重症 6",
    "note": "",
    "url": "https://www.tsccm.org.tw/Academic/index_other.asp",
-   "scraped_at": "2026-11-20T07:10:46Z",
+   "scraped_at": "2026-11-20T20:13:53Z",
    "first_seen": "2026-10-24"
   },
   {
@@ -2189,7 +2053,7 @@
    "credit": "胸重 重症聯甄 4 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10385",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-10-30"
   },
   {
@@ -2209,7 +2073,7 @@
    "credit": "胸重 B類 9 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10442",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-11-04"
   },
   {
@@ -2228,8 +2092,8 @@
    "online": false,
    "credit": "睡眠 2 分",
    "note": "",
-   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-13&edate=2027-03-20&page=1",
-   "scraped_at": "2026-11-20T07:10:51Z",
+   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-14&edate=2027-03-21&page=1",
+   "scraped_at": "2026-11-20T20:13:58Z",
    "first_seen": "2026-11-08"
   },
   {
@@ -2249,7 +2113,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10433",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-11-04"
   },
   {
@@ -2268,8 +2132,8 @@
    "online": true,
    "credit": "睡眠 2 分",
    "note": "",
-   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-13&edate=2027-03-20&page=1",
-   "scraped_at": "2026-11-20T07:10:51Z",
+   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-14&edate=2027-03-21&page=1",
+   "scraped_at": "2026-11-20T20:13:58Z",
    "first_seen": "2026-10-24"
   },
   {
@@ -2289,7 +2153,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10408",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-11-02"
   },
   {
@@ -2309,7 +2173,7 @@
    "credit": "",
    "note": "已換算台灣時間；原訂 12/15 18:00-19:30 CET",
    "url": "https://channel.ersnet.org/media-122482-ai-enabled-sleep-medicine-clinical-application-in-paediatric-and-adult-osa-15-december-2026",
-   "scraped_at": "2026-11-20T07:11:04Z",
+   "scraped_at": "2026-11-20T20:14:10Z",
    "first_seen": "2026-11-06"
   },
   {
@@ -2329,7 +2193,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10411",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-11-02"
   },
   {
@@ -2349,7 +2213,7 @@
    "credit": "胸重 B類 3 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10447",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-11-04"
   },
   {
@@ -2368,8 +2232,8 @@
    "online": false,
    "credit": "睡眠 1 分",
    "note": "",
-   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-13&edate=2027-03-20&page=1",
-   "scraped_at": "2026-11-20T07:10:51Z",
+   "url": "https://www.tssm.org.tw/learn_list.php?sdate=2026-11-14&edate=2027-03-21&page=1",
+   "scraped_at": "2026-11-20T20:13:58Z",
    "first_seen": "2026-11-14"
   },
   {
@@ -2389,7 +2253,7 @@
    "credit": "胸重 B類 2 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10438",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-11-04"
   },
   {
@@ -2409,7 +2273,7 @@
    "credit": "",
    "note": "已換算台灣時間；原訂 12/17 17:00-18:00 CET",
    "url": "https://channel.ersnet.org/media-122725-journal-club-acute-respiratory-distress-syndrome-60-year-anniversary-are-we-there-yet-17-december-2026",
-   "scraped_at": "2026-11-20T07:11:05Z",
+   "scraped_at": "2026-11-20T20:14:11Z",
    "first_seen": "2026-11-14"
   },
   {
@@ -2429,7 +2293,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10172",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-10-24"
   },
   {
@@ -2449,7 +2313,7 @@
    "credit": "胸重 B類 4 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10430",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-11-04"
   },
   {
@@ -2469,7 +2333,7 @@
    "credit": "胸重 B類 2 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10403",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-11-02"
   },
   {
@@ -2489,7 +2353,7 @@
    "credit": "胸重 B類 3 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10402",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-11-06"
   },
   {
@@ -2509,7 +2373,7 @@
    "credit": "",
    "note": "",
    "url": "https://www.tstld.org/event_detail/36",
-   "scraped_at": "2026-11-20T07:10:38Z",
+   "scraped_at": "2026-11-20T20:13:34Z",
    "first_seen": "2026-11-17"
   },
   {
@@ -2529,7 +2393,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10434",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-11-04"
   },
   {
@@ -2549,7 +2413,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10409",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-11-02"
   },
   {
@@ -2569,7 +2433,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10440",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-11-04"
   },
   {
@@ -2589,7 +2453,7 @@
    "credit": "胸重 B類 3 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10448",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-11-04"
   },
   {
@@ -2609,7 +2473,7 @@
    "credit": "胸重 B類 2 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10439",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-11-04"
   },
   {
@@ -2629,7 +2493,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10435",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-11-04"
   },
   {
@@ -2649,7 +2513,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10451",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-11-17"
   },
   {
@@ -2669,7 +2533,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10426",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-11-04"
   },
   {
@@ -2689,7 +2553,7 @@
    "credit": "胸重 B類 1 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10460",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-11-17"
   },
   {
@@ -2709,7 +2573,7 @@
    "credit": "胸重 B類 3 分",
    "note": "",
    "url": "https://tspccm.formosasoft.com/conference/10461",
-   "scraped_at": "2026-11-20T07:10:35Z",
+   "scraped_at": "2026-11-20T20:12:21Z",
    "first_seen": "2026-11-17"
   },
   {
@@ -2729,7 +2593,7 @@
    "credit": "",
    "note": "已換算台灣時間；原訂 1/19 17:00-18:00 CET",
    "url": "https://channel.ersnet.org/media-122580-airway-diseases-year-in-review-2026-19-january-2027",
-   "scraped_at": "2026-11-20T07:11:06Z",
+   "scraped_at": "2026-11-20T20:14:13Z",
    "first_seen": "2026-11-06"
   },
   {
@@ -2749,7 +2613,7 @@
    "credit": "",
    "note": "已換算台灣時間；原訂 2/22 17:00-18:00 CET",
    "url": "https://channel.ersnet.org/media-122261-beyond-silicosis-artificial-stone-dust-as-a-new-global-clinical-emergency-22-february-2027",
-   "scraped_at": "2026-11-20T07:11:08Z",
+   "scraped_at": "2026-11-20T20:14:14Z",
    "first_seen": "2026-11-06"
   }
  ]
